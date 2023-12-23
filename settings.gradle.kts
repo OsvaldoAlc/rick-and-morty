@@ -17,3 +17,4 @@ rootProject.name = "Rick"
 include(":app")
 include(":network")
 include(":common")
+include(":mylibrary")

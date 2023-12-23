@@ -1,4 +1,7 @@
 package com.example.network.retrofit
 
-class NiaNetworkDataSource {
+import com.example.network.retrofit.model.CharactersNetworkResponse
+
+interface NiaNetworkDataSource {
+    suspend fun getTopics(): CharactersNetworkResponse
 }
