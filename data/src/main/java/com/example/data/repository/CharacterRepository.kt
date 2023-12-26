@@ -4,5 +4,5 @@ import com.example.model.RMCharacter
 import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {
-   suspend fun getCharacters(): Flow<List<RMCharacter>>
+    fun getCharacters(): Flow<List<RMCharacter>>
 }

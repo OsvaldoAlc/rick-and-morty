@@ -52,5 +52,4 @@ class RetrofitRmNetwork @Inject constructor(
 
     override suspend fun getTopics(): CharactersNetworkResponse =
         networkApi.getCharacters()
-
 }

@@ -10,7 +10,7 @@ import javax.inject.Inject
 class NetworkRepository @Inject constructor(
     private val network: RmNetworkDataSource,
 ) : CharacterRepository {
-    override suspend fun getCharacters(): Flow<List<RMCharacter>> = flow {
+    override fun getCharacters(): Flow<List<RMCharacter>> = flow {
         val result = network.getTopics().results?.map { it.asCharacter() }
         emit(
             result ?: emptyList()
