@@ -32,13 +32,13 @@ private data class NetworkResponse<T>(
 )
 
 /**
- * [Retrofit] backed [NiaNetworkDataSource]
+ * [Retrofit] backed [RmNetworkDataSource]
  */
 @Singleton
-class RetrofitNiaNetwork @Inject constructor(
+class RetrofitRmNetwork @Inject constructor(
     networkJson: Json,
     okhttpCallFactory: Call.Factory,
-) : NiaNetworkDataSource {
+) : RmNetworkDataSource {
 
     private val networkApi = Retrofit.Builder()
         .baseUrl(NIA_BASE_URL)

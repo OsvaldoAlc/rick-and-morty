@@ -1,24 +1,20 @@
 package com.example.network.retrofit.model
 
-class Result {
-    var id: Int? = null
-    var name: String? = null
-    var status: String? = null
-    var species: String? = null
-    var type: String? = null
-    var gender: String? = null
-    var origin: Origin? = null
-    var location: Location? = null
-    var image: String? = null
-    var episode: List<String>? = null
-    var url: String? = null
-    var created: String? = null
-    private val additionalProperties: MutableMap<String, Any> = LinkedHashMap()
-    fun getAdditionalProperties(): Map<String, Any> {
-        return additionalProperties
-    }
+import kotlinx.serialization.Serializable
 
-    fun setAdditionalProperty(name: String, value: Any) {
-        additionalProperties[name] = value
-    }
-}
+@Serializable
+data class Result(
+    val id: Int? = null,
+    val name: String? = null,
+    val status: String? = null,
+    val species: String? = null,
+    val type: String? = null,
+    val gender: String? = null,
+    val origin: Origin? = null,
+    val location: Location? = null,
+    val image: String? = null,
+    val episode: List<String>? = null,
+    val url: String? = null,
+    val created: String? = null,
+    val additionalProperties: Map<String, Any> = mapOf()
+)

@@ -1,16 +1,14 @@
 package com.example.network.retrofit.model
 
-class Info {
-    var count: Int? = null
-    var pages: Int? = null
-    var next: String? = null
-    var prev: Any? = null
-    private val additionalProperties: MutableMap<String, Any> = LinkedHashMap()
-    fun getAdditionalProperties(): Map<String, Any> {
-        return additionalProperties
-    }
+import kotlinx.serialization.Serializable
 
-    fun setAdditionalProperty(name: String, value: Any) {
-        additionalProperties[name] = value
-    }
-}
+
+@Serializable
+data class Info(
+    val count: Int? = null,
+    val pages: Int? = null,
+    val next: String? = null,
+    val prev: Any? = null,
+    val additionalProperties: Map<String, Any> = LinkedHashMap()
+)
+

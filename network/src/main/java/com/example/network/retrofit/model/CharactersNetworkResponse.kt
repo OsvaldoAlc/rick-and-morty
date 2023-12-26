@@ -1,14 +1,12 @@
 package com.example.network.retrofit.model
 
-class CharactersNetworkResponse {
-    var info: Info? = null
-    var results: List<Result>? = null
-    private val additionalProperties: MutableMap<String, Any> = LinkedHashMap()
-    fun getAdditionalProperties(): Map<String, Any> {
-        return additionalProperties
-    }
+import kotlinx.serialization.Serializable
 
-    fun setAdditionalProperty(name: String, value: Any) {
-        additionalProperties[name] = value
-    }
-}
+
+@Serializable
+data class CharactersNetworkResponse(
+    val info: Info? = null,
+    val results: List<Result>? = null,
+    val additionalProperties: Map<String, Any> = LinkedHashMap()
+)
+

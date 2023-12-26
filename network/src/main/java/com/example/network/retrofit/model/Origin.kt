@@ -1,14 +1,11 @@
 package com.example.network.retrofit.model
 
-class Origin {
-    var name: String? = null
-    var url: String? = null
-    private val additionalProperties: MutableMap<String, Any> = LinkedHashMap()
-    fun getAdditionalProperties(): Map<String, Any> {
-        return additionalProperties
-    }
+import kotlinx.serialization.Serializable
 
-    fun setAdditionalProperty(name: String, value: Any) {
-        additionalProperties[name] = value
-    }
-}
+@Serializable
+data class Origin(
+    val name: String? = null,
+    val url: String? = null,
+    val additionalProperties: Map<String, Any> = mapOf()
+)
+
