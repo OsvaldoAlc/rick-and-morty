@@ -2,7 +2,6 @@ package com.example.network.retrofit
 
 import com.example.network.retrofit.model.CharactersNetworkResponse
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaType
@@ -22,14 +21,6 @@ private interface RetrofitRickApi {
 }
 
 private const val NIA_BASE_URL = "https://rickandmortyapi.com/api/"
-
-/**
- * Wrapper for data provided from the [NIA_BASE_URL]
- */
-@Serializable
-private data class NetworkResponse<T>(
-    val data: T,
-)
 
 /**
  * [Retrofit] backed [RmNetworkDataSource]
