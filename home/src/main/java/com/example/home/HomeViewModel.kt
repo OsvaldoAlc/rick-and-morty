@@ -6,6 +6,7 @@ import com.example.common.model.Result
 import com.example.common.model.asResult
 import com.example.domain.GetCharactersUseCase
 import com.example.model.RMCharacter
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
+@HiltViewModel
 class HomeViewModel @Inject constructor(
     private val useCase: GetCharactersUseCase
 ) : ViewModel() {

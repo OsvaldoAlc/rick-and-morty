@@ -5,7 +5,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.Call
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import javax.inject.Inject
@@ -44,7 +44,7 @@ class RetrofitRmNetwork @Inject constructor(
         .baseUrl(NIA_BASE_URL)
         .callFactory(okhttpCallFactory)
         .addConverterFactory(
-            networkJson.asConverterFactory(MediaType.get("application/json; charset=utf-8")),
+            networkJson.asConverterFactory("application/json; charset=utf-8".toMediaType()),
         )
         .build()
         .create(RetrofitRickApi::class.java)
