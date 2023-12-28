@@ -2,8 +2,6 @@ package com.example.data.di
 
 import com.example.data.repository.CharacterRepository
 import com.example.data.repository.NetworkRepository
-import com.example.network.retrofit.RetrofitRmNetwork
-import com.example.network.retrofit.RmNetworkDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,11 +16,6 @@ interface DataModule {
     fun bindsUserDataRepository(
         userDataRepository: NetworkRepository,
     ): CharacterRepository
-
-    @Binds
-    fun bindsRmNetworkDataSource(
-        userDataRepository: RetrofitRmNetwork,
-    ): RmNetworkDataSource
 
 
 }
