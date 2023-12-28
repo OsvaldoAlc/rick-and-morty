@@ -36,8 +36,6 @@ android {
 
 dependencies {
     implementation(libs.retrofit.core)
-    implementation(libs.retrofit.kotlin.serialization)
-    implementation(libs.kotlinx.serialization.json)
     implementation(libs.hilt.android)
     implementation(libs.okhttp.logging)
     implementation ("com.google.code.gson:gson:2.10.1")
