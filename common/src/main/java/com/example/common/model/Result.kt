@@ -17,5 +17,9 @@ fun <T> Flow<T>.asResult(): Flow<Result<T>> {
             Result.Success(it)
         }
         .onStart { emit(Result.Loading) }
-        .catch { emit(Result.Error(it)) }
+        .catch {
+            println("Error cdrere")
+            println(it)
+            emit(Result.Error(it))
+        }
 }
