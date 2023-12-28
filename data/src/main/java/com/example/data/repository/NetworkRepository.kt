@@ -11,7 +11,8 @@ class NetworkRepository @Inject constructor(
     private val network: RmNetworkDataSource,
 ) : CharacterRepository {
     override fun getCharacters(): Flow<List<RMCharacter>> = flow {
-        val result = network.getTopics().results?.map { it.asCharacter() }
+        val result = network.getTopics().results
+        ?.map { it.asCharacter() }
         emit(
             result ?: emptyList()
         )

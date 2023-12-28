@@ -4,8 +4,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.json.Json
-import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Singleton
@@ -16,19 +14,10 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesNetworkJson(): Json = Json {
-        ignoreUnknownKeys = true
+    fun providesNetworkJson(): OkHttpClient {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        return OkHttpClient.Builder().addInterceptor(interceptor).build()
     }
 
-    @Provides
-    @Singleton
-    fun okHttpCallFactory(): Call.Factory = OkHttpClient.Builder()
-        .addInterceptor(
-            HttpLoggingInterceptor()
-                .apply {
-                    setLevel(HttpLoggingInterceptor.Level.BODY)
-
-                },
-        )
-        .build()
 }
