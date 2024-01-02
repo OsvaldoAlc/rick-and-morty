@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -23,7 +24,10 @@ class HomeViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow<TopicUiState>(TopicUiState.Loading)
     // The UI collects from this StateFlow to get its state updates
-    val uiState: StateFlow<TopicUiState> = _uiState
+    val uiState: StateFlow<TopicUiState> = _uiState.asStateFlow()
+
+    private val _currentCharacter = MutableStateFlow<RMCharacter>(RMCharacter("",""))
+    val currentCharacter = _currentCharacter.asStateFlow()
 
     fun getCharacters() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -39,6 +43,10 @@ class HomeViewModel @Inject constructor(
                 }.collect()
 
         }
+    }
+
+    fun updateCharacter(rmCharacter: RMCharacter) {
+        _currentCharacter.value = rmCharacter
     }
 }
 
