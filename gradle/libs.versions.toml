@@ -13,6 +13,8 @@ hilt = "2.44"
 kotlinxSerializationJson = "1.6.0"
 okhttp = "4.12.0"
 life-cycle = "2.4.0"
+legacy-support-v4 = "1.0.0"
+lifecycle-livedata-ktx = "2.6.2"
 
 
 
@@ -30,6 +32,8 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 life-cycle  = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "life-cycle" }
+legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacy-support-v4" }
+lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle-livedata-ktx" }
 
 
 

@@ -5,6 +5,6 @@ plugins {
     id("com.android.library") version "8.2.0" apply false
     id("com.google.dagger.hilt.android") version "2.48" apply false
     //alias(libs.plugins.kotlinSerialization) apply false
-
+    id ("androidx.navigation.safeargs") version "2.7.6" apply false
 
 }
