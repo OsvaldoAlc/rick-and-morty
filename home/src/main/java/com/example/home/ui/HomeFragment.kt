@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import com.example.home.R
+import com.example.home.TopicUiState
 import com.example.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -40,12 +41,22 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentHomeBinding.bind(view)
-        binding.boton.setOnClickListener {
+
+        val adapter = RMCharactersAdapter {
             NavHostFragment.findNavController(this).navigate(R.id.action_homeFragment_to_detailsFragment)
         }
+
+        binding.recyclerView.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
+                    when(it) {
+                        is TopicUiState.Success -> {
+                            adapter.submitList(it.characters)
+                        } else -> {
+
+                        }
+                    }
                     println("El resultado es")
                     println(it)
                 }
