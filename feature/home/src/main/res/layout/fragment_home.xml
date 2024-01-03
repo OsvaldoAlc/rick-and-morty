@@ -23,7 +23,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/material_dynamic_primary70"
-    tools:context="com.example.home.ui.HomeFragment">
+    tools:context="com.example.home.com.example.feature.home.ui.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -37,5 +37,5 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:id="@+id/detail_container"
-        android:name="com.example.home.ui.DetailsFragment"/>
+        android:name="com.example.feature.home.ui.DetailsFragment"/>
 </androidx.slidingpanelayout.widget.SlidingPaneLayout>

@@ -1,4 +1,4 @@
-package com.example.home.ui
+package com.example.feature.home.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,15 +11,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.slidingpanelayout.widget.SlidingPaneLayout
-import com.example.home.TopicUiState
-import com.example.home.databinding.FragmentHomeBinding
+import com.example.feature.home.HomeViewModel
+import com.example.feature.home.TopicUiState
+import com.example.feature.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val viewModel: com.example.home.HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
 
 
     companion object {

@@ -1,4 +1,4 @@
-package com.example.home.ui
+package com.example.feature.home.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.home.R
+import com.example.feature.home.HomeViewModel
+import com.example.feature.home.R
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,7 +26,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class DetailsFragment : Fragment() {
 
-    private val viewModel: com.example.home.HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

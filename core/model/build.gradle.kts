@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.model"
+    namespace = "com.example.core.model"
     compileSdk = 34
 
     defaultConfig {

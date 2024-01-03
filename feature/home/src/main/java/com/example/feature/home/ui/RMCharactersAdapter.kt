@@ -1,4 +1,4 @@
-package com.example.home.ui
+package com.example.feature.home.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.home.databinding.CharacterCardItemBinding
+import com.example.feature.home.databinding.CharacterCardItemBinding
 import com.example.model.RMCharacter
 
 class RMCharactersAdapter(private val onItemClicked: (RMCharacter) -> Unit) :

@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.home"
+    namespace = "com.example.feature.home"
     compileSdk = 34
 
     defaultConfig {
@@ -49,6 +49,9 @@ dependencies {
     implementation(libs.life.cycle)
     implementation(libs.legacy.support.v4)
     implementation(libs.lifecycle.livedata.ktx)
+    implementation(project(":core:domain"))
+    implementation(project(":core:model"))
+    implementation(project(":core:common"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

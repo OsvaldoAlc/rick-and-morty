@@ -1,6 +1,6 @@
 package com.example.network.di
 
-import com.example.network.BuildConfig
+import com.example.core.network.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,9 +1,9 @@
-package com.example.home
+package com.example.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.common.model.Result
-import com.example.common.model.asResult
+import com.example.core.common.model.asResult
+import com.example.core.common.model.Result
 import com.example.domain.GetCharactersUseCase
 import com.example.model.RMCharacter
 import dagger.hilt.android.lifecycle.HiltViewModel

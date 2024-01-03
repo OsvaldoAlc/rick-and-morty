@@ -15,10 +15,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "Rick"
 include(":app")
-include(":network")
-include(":common")
-include(":mylibrary")
-include(":data")
-include(":model")
-include(":domain")
-include(":home")
+include(":core:network")
+include(":core:common")
+include(":core:data")
+include(":core:model")
+include(":core:domain")
+include(":feature:home")
