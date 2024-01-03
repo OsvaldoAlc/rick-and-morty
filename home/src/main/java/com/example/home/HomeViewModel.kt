@@ -7,7 +7,6 @@ import com.example.common.model.asResult
 import com.example.domain.GetCharactersUseCase
 import com.example.model.RMCharacter
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val useCase: GetCharactersUseCase
+    private val useCase: GetCharactersUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<TopicUiState>(TopicUiState.Loading)
@@ -30,7 +29,7 @@ class HomeViewModel @Inject constructor(
     val currentCharacter = _currentCharacter.asStateFlow()
 
     fun getCharacters() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             useCase().asResult()
                 .map {
                     when(it) {
