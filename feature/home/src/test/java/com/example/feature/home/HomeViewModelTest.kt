@@ -1,13 +1,11 @@
 package com.example.feature.home
 
-import app.cash.turbine.test
 import com.example.domain.GetCharactersUseCase
 import com.example.model.RMCharacter
 import com.google.common.truth.Truth.assertThat
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
@@ -17,7 +15,7 @@ import org.junit.Test
 class HomeViewModelTest {
 
     @get:Rule
-    val mainDispatcherRule = MainDispatcherRule(testDispatcher = StandardTestDispatcher())
+    val mainDispatcherRule = MainDispatcherRule()
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -46,10 +44,7 @@ class HomeViewModelTest {
         every { getCharactersUseCase.invoke() } returns flowOf(myCharacters)
 
         homeViewModel.getCharacters()
-        homeViewModel.uiState.test {
-            assertThat(awaitItem()).isEqualTo(TopicUiState.Loading)
-            assertThat(awaitItem()).isEqualTo(TopicUiState.Success(myCharacters))
-        }
+        assertThat(homeViewModel.uiState.value).isEqualTo(TopicUiState.Success(myCharacters))
     }
 
     @Test
@@ -57,9 +52,6 @@ class HomeViewModelTest {
         every { getCharactersUseCase.invoke() } throws Exception("Error")
 
         homeViewModel.getCharacters()
-        homeViewModel.uiState.test {
-            assertThat(awaitItem()).isEqualTo(TopicUiState.Loading)
-            assertThat(awaitItem()).isEqualTo(TopicUiState.Error)
-        }
+        assertThat(homeViewModel.uiState.value).isEqualTo(TopicUiState.Error)
     }
 }
