@@ -2,11 +2,12 @@ package com.example.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.common.model.asResult
 import com.example.core.common.model.Result
+import com.example.core.common.model.asResult
 import com.example.domain.GetCharactersUseCase
 import com.example.model.RMCharacter
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,18 +29,28 @@ class HomeViewModel @Inject constructor(
     private val _currentCharacter = MutableStateFlow<RMCharacter>(RMCharacter("",""))
     val currentCharacter = _currentCharacter.asStateFlow()
 
+    private val handler = CoroutineExceptionHandler { _, exception ->
+        _uiState.value =  TopicUiState.Error
+    }
+
     fun getCharacters() {
-        viewModelScope.launch {
-            useCase().asResult()
+        viewModelScope.launch(handler) {
+            useCase()
+                .asResult()
                 .map {
                     when(it) {
                         is Result.Success -> {
                             _uiState.value = TopicUiState.Success(it.data)
                         }
-                        is Result.Loading -> TopicUiState.Loading
-                        is Result.Error -> TopicUiState.Error
+                        is Result.Loading -> {
+                            _uiState.value = TopicUiState.Loading
+                        }
+                        is Result.Error -> {
+                            _uiState.value =  TopicUiState.Error
+                        }
                     }
-                }.collect()
+                }
+                .collect()
 
         }
     }

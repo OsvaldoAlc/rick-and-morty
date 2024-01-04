@@ -16,10 +16,10 @@ fun <T> Flow<T>.asResult(): Flow<Result<T>> {
         .map<T, Result<T>> {
             Result.Success(it)
         }
-        .onStart { emit(Result.Loading) }
+        .onStart {
+            emit(Result.Loading)
+        }
         .catch {
-            println("Error cdrere")
-            println(it)
             emit(Result.Error(it))
         }
 }

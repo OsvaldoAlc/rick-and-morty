@@ -53,6 +53,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:common"))
     testImplementation(libs.junit)
+    testImplementation(project(":core:data"))
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("com.google.dagger:hilt-android:2.48")
@@ -61,6 +62,12 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    testImplementation(libs.mockk.android)
+    testImplementation(libs.mockk.agent)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation ("com.google.truth:truth:1.1.4")
+    testImplementation ("app.cash.turbine:turbine:1.0.0")
 
 }
 kapt {
