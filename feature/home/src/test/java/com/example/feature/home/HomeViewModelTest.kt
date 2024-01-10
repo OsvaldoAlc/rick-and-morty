@@ -15,7 +15,7 @@ import org.junit.Test
 class HomeViewModelTest {
 
     @get:Rule
-    val mainDispatcherRule = MainDispatcherRule()
+    val mainDispatcherRule = com.example.core.testing.util.MainDispatcherRule()
 
     private lateinit var homeViewModel: HomeViewModel
 

@@ -35,13 +35,18 @@ android {
 
 dependencies {
 
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(libs.mockk.android)
-    testImplementation(libs.mockk.android)
-    testImplementation(libs.mockk.agent)
+    api(libs.core.ktx)
+    api(libs.appcompat)
+    api(libs.material)
+    api(libs.junit)
+    api(libs.androidx.test.ext.junit)
+    api(libs.espresso.core)
+    api(libs.mockk.android)
+    api(libs.mockk.android)
+    api(libs.mockk.agent)
+
+    api(libs.mockk.android)
+    api(libs.mockk.agent)
+    api(libs.kotlinx.coroutines.test)
+    api ("com.google.truth:truth:1.1.4")
 }

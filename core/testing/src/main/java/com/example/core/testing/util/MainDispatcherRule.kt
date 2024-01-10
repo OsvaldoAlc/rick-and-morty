@@ -1,4 +1,4 @@
-package com.example.feature.home
+package com.example.core.testing.util
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestDispatcher
