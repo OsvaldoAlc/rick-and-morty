@@ -7,13 +7,13 @@ import com.example.core.common.model.asResult
 import com.example.domain.GetCharactersUseCase
 import com.example.model.RMCharacter
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 
@@ -22,38 +22,35 @@ class HomeViewModel @Inject constructor(
     private val useCase: GetCharactersUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<TopicUiState>(TopicUiState.Loading)
-    // The UI collects from this StateFlow to get its state updates
-    val uiState: StateFlow<TopicUiState> = _uiState.asStateFlow()
 
-    private val _currentCharacter = MutableStateFlow<RMCharacter>(RMCharacter("",""))
-    val currentCharacter = _currentCharacter.asStateFlow()
-
-    private val handler = CoroutineExceptionHandler { _, exception ->
-        _uiState.value =  TopicUiState.Error
-    }
-
-    fun getCharacters() {
-        viewModelScope.launch(handler) {
-            useCase()
-                .asResult()
-                .map {
-                    when(it) {
-                        is Result.Success -> {
-                            _uiState.value = TopicUiState.Success(it.data)
-                        }
-                        is Result.Loading -> {
-                            _uiState.value = TopicUiState.Loading
-                        }
-                        is Result.Error -> {
-                            _uiState.value =  TopicUiState.Error
-                        }
-                    }
+    val uiState: StateFlow<TopicUiState> = useCase()
+        .asResult()
+        .map {
+            when (it) {
+                is Result.Success -> {
+                    TopicUiState.Success(it.data)
                 }
-                .collect()
 
+                is Result.Loading -> {
+                    TopicUiState.Loading
+                }
+
+                is Result.Error -> {
+                    TopicUiState.Error
+                }
+            }
         }
-    }
+        .catch {
+            println("Erorr")
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = TopicUiState.Loading
+        )
+
+    private val _currentCharacter = MutableStateFlow<RMCharacter>(RMCharacter("", ""))
+    val currentCharacter = _currentCharacter.asStateFlow()
 
     fun updateCharacter(rmCharacter: RMCharacter) {
         _currentCharacter.value = rmCharacter

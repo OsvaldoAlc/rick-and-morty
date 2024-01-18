@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -62,7 +63,11 @@ class HomeFragment : Fragment() {
                     when(it) {
                         is TopicUiState.Success -> {
                             adapter.submitList(it.characters)
-                        } else -> {
+                        }
+                        is TopicUiState.Error -> {
+                            Toast.makeText(this@HomeFragment.context, "Error :(", Toast.LENGTH_LONG).show()
+                        }
+                        else -> {
 
                         }
                     }
@@ -71,7 +76,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        viewModel.getCharacters()
     }
 
 }
